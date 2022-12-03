@@ -153,6 +153,16 @@ app.post('/ajout/proprietaires', (req, res)=>{
     }
     })
 })
+
+
+app.get('/proprietaire/:id', (req, res)=>{
+    
+        con.query('SELECT * FROM proprietaires WHERE id_proprietaire=?',[req.params.id],(err,result)=>{
+            if(err) res.status(500).send(err)
+            
+            res.status(200).json(result)
+         })
+     })
 //Effacer une categorie
 app.delete('/delete/categorie/:id', (req, res)=>{
     
