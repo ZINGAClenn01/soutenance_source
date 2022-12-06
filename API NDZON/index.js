@@ -134,17 +134,46 @@ app.post('/ajout/maison', (req, res)=>{
     })
 })
 
+// modifier une maison;
+app.put('/modifier/maison/:id', (req, res)=>{
+
+    const id_maison = req.body.id_classe;
+    const id_categorie = req.body.id_categorie;
+    const id_quartier = req.body.id_quartier;
+    const id_proprietaire = req.body.id_proprietaire;
+    const prix = req.body.prix;
+    const description = req.body.description;
+    const nombre_chambre = req.body.nombre_chambre;
+    const nombre_douche = req.body.nombre_douche;
+    const nombre_salon = req.body.nombre_salon;
+    const coordonnees = req.body.coordonnees;
+    const telephone_proprietaire = req.body.telephone_proprietaire;
+    // const image1 = req.body.image1;
+    // const image2 = req.body.image2;
+    // const image3 = req.body.image3;
+    // const image4 = req.body.image4;
+    // const image5 = req.body.image5;
+    con.query(`UPDATE maisons SET id_categorie = '1', id_quartier = '5', prix = '113319', description = 'bien bienbbb', nombre_chambre = '2', nombre_douche = '2', nombre_salon = '2', telephone_proprietaire = '562565625688' WHERE maisons.id_maison = 14`,[id_categorie, id_quartier, id_proprietaire, prix, description, nombre_chambre, nombre_douche, nombre_salon, coordonnees, telephone_proprietaire],(err,result)=>{
+        if(err)
+    {
+        console.log(err)
+    }else{
+        res.send('Status updated successfully');
+    }
+    })
+})
 
 // Ajouter un proprietaire;
 app.post('/ajout/proprietaires', (req, res)=>{
 
     const id_proprietaire = req.body.id_classe;
     const nom_proprietaire = req.body.nom_proprietaire;
+    const prenom_proprietaire = req.body.prenom_proprietaire;
     const email_proprietaire = req.body.email_proprietaire;
     const téléphone_proprietaire = req.body.téléphone_proprietaire;
     const password = req.body.password;
     
-    con.query('INSERT INTO proprietaires VALUES(NULL,?,?,?,?)',[nom_proprietaire,email_proprietaire,téléphone_proprietaire,password],(err,result)=>{
+    con.query('INSERT INTO proprietaires VALUES(NULL,?,?,?,?,?)',[nom_proprietaire,prenom_proprietaire,email_proprietaire,téléphone_proprietaire,password],(err,result)=>{
         if(err)
     {
         console.log(err)
